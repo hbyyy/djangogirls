@@ -48,10 +48,18 @@ def post_list(request):
     return render(request, 'post_list.html', context)
 
 
-def post_detail(request):
 
-    post = Post.objects.all()[0]
-    context = dict(post=post)
 
-    return render(request, 'post_detail.html', context)
+def post_detail(request, pk):
+    print(request)
+    print(pk)
+
+    try:
+        post = Post.objects.get(pk=pk)
+        print("포스트입니다", post)
+        context = dict(post=post)
+        return render(request, 'post_detail.html', context)
+    except Post.DoesNotExist:
+        return HttpResponse('<h1>없음</h1>')
+    # post = get_object_or_404(Post, )
 
