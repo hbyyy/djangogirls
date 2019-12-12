@@ -1,6 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from blog.models import Post
 
@@ -39,7 +40,10 @@ def post_list(request):
     # 그 파일을 text로 만들어서 httpResponse형태로 돌려준다
     # 위 기능을 하는 shortcut함수
 
-    posts = Post.objects.all()
+    # posts = Post.objects.all()
+    # posts = Post.objects.all()[::-1]  -> 이렇게 하면 post가 list 객체가 된다. QuerySet객체가 아니기 떄문에 QuerySet객체의 메소드를 사용못함
+    # 아래처럼 한다면 db 자체에서 정렬 수행해서 가져옴, sql문이 달라진다.
+    posts = Post.objects.order_by('-pk')
     context = dict(posts=posts)
 
     return render(request, 'post_list.html', context)
@@ -69,7 +73,7 @@ def post_add(request):
         title = request.POST['title']
         text = request.POST['text']
         print(title, text)
-
+        
         m = Post.objects.create(
             author=request.user,
             title=title,
@@ -77,6 +81,13 @@ def post_add(request):
         )
 
         result = f'title:{m.title}, create_date:{m.created_date}'
-        return HttpResponse(result)
+        # return HttpResponse(result)
+
+        # post_list_url = reverse('url-name-post-list')
+        # return HttpResponseRedirect(post_list_url)
+        # ------ 위 두개 shortcut!!
+        return redirect('url-name-post-list')
+
+        # return HttpResponseRedirect('/posts/')
     else:
         return render(request, 'post_add.html')
