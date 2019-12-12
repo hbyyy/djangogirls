@@ -4,7 +4,7 @@
     {% for post in posts %}
         <div class="card mb-3">
             <div class="card-body">
-                <h5 class="card-title" ><a href="/post-detail/{{ post.pk }}/">{{ post.title }}</a></h5>
+                <h5 class="card-title" ><a href="{% url 'url-name-post-detail' pk=post.pk %}">{{ post.title }}</a></h5>
                 <!--
                          linebreaksbr = 줄바꿈을 <br>태그로 변환
                          truncatechars = 뒤에 지정한 글자수만큼 표시 후 ...으로 줄임
