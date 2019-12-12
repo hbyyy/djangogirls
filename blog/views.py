@@ -57,3 +57,7 @@ def post_detail(request, pk):
     except Post.DoesNotExist:
         return HttpResponse('<h1>없음</h1>')
     # post = get_object_or_404(Post, )
+
+
+def post_add(request):
+    return render(request, 'post_add.html')
