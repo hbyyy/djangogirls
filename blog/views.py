@@ -12,10 +12,10 @@ def post_list(request):
     # # 상위폴더(blog)
     # #  상위폴더 (djangogirls)
     # #    하위폴더 (template)
-    # #       하위파일 (post_list.html)내요ㅕㅇ을 read()한 결과를 httpResponse에 인자로 전달
+    # #       하위파일 (post_list.html)내을 read()한 결과를 httpResponse에 인자로 전달
     #
     # # 경로이동
-    # # os.path.apspath(__file__) <-현재 파일의 절대경로를 리턴해ㅈㅁ
+    # # os.path.apspath(__file__) <-현재 파일의 절대경로를 리턴해준
     # # os.path.dirname
     # # os.path.join
     # # 파일열기
@@ -46,4 +46,8 @@ def post_list(request):
     context = dict(posts=posts)
 
     return render(request, 'post_list.html', context)
+
+
+def post_detail(request):
+    return render(request, 'post_detail.html')
 
