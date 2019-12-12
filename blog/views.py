@@ -49,5 +49,9 @@ def post_list(request):
 
 
 def post_detail(request):
-    return render(request, 'post_detail.html')
+
+    post = Post.objects.all()[0]
+    context = dict(post=post)
+
+    return render(request, 'post_detail.html', context)
 
