@@ -1,7 +1,4 @@
-import os
 from django.http import HttpResponse
-
-
 # Create your views here.
 from django.shortcuts import render
 
@@ -48,8 +45,6 @@ def post_list(request):
     return render(request, 'post_list.html', context)
 
 
-
-
 def post_detail(request, pk):
     print(request)
     print(pk)
@@ -62,4 +57,3 @@ def post_detail(request, pk):
     except Post.DoesNotExist:
         return HttpResponse('<h1>없음</h1>')
     # post = get_object_or_404(Post, )
-
