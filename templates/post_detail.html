@@ -1,17 +1,68 @@
-{% extends 'base.html' %}
+{#{% extends 'base.html' %}#}
+{##}
+{#{% block content %}#}
+{#<div class="card mb-3">#}
+{#    <div class="card-body">#}
+{#        <h5 class="card-title">{{ post.title }}</h5>#}
+{#        <!--#}
+{#                 linebreaksbr = 줄바꿈을 <br>태그로 변환#}
+{#                 truncatechars = 뒤에 지정한 글자수만큼 표시 후 ...으로 줄임#}
+{#                           -->#}
+{#        <p class="card-text">{{ post.text| linebreaksbr }}</p>#}
+{#        <div class="text-right">#}
+{#            <span>{{ post.created_date }}</span>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#{% endblock %}#}
 
-{% block content %}
-<div class="card mb-3">
-    <div class="card-body">
-        <h5 class="card-title">{{ post.title }}</h5>
-        <!--
-                 linebreaksbr = 줄바꿈을 <br>태그로 변환
-                 truncatechars = 뒤에 지정한 글자수만큼 표시 후 ...으로 줄임
-                           -->
-        <p class="card-text">{{ post.text| linebreaksbr }}</p>
-        <div class="text-right">
-            <span>{{ post.created_date }}</span>
+
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/static/bootstrap/bootstrap.css">
+</head>
+<body>
+<div id="wrap">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">DjangoGirls</a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="{% url 'url-name-post-list' %}" class="nav-link">Post List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'url-name-post-add' %}" class="nav-link">Post add</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'url-name-post-delete' pk=post.pk %}" class="nav-link">Post Delete</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid pt-2">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <!--
+                         linebreaksbr = 줄바꿈을 <br>태그로 변환
+                         truncatechars = 뒤에 지정한 글자수만큼 표시 후 ...으로 줄임
+                                   -->
+                <p class="card-text">{{ post.text| linebreaksbr }}</p>
+                <div class="text-right">
+                    <span>{{ post.created_date }}</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-{% endblock %}
+
+</body>
+</html>

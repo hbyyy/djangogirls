@@ -94,30 +94,36 @@ def post_add(request):
 
 def post_delete(request, pk):
     # pk에 해당하는 Post를 삭제한다
-    # 삭제 후에는 post_list로 이동
-    pass
+    # 삭제 후에는 post_list페이지로 이동
+    delete_item = Post.objects.get(pk=pk)
+    delete_item.delete()
+    return redirect('url-name-post-list')
 
 
-# 수정이 어려울 것!! 구글에 예시를 검색해 보자
+
 def post_edit(request, pk):
-    # pk에 해당하는 Post를 수정
+    # pk에 해당하는 Post를 수정한다
     if request.method == 'POST':
         # request.POST로 전달된 title, text내용을 사용해서
-        # pk에 해당하는 Post의 해당 필드를 ㅅ정하고 save()
-        # 이후 해당 Post의 post_detail 화면으로 이동
+        #  pk에 해당하는 Post의 해당 필드를 수정하고 save()
+        #  이후 해당 Post의 post-detail화면으로 이동
         pass
     else:
         # 수정할 수 있는 form이 존재하는 화면을 보여줌
         # 화면의 form에는 pk에 해당하는 Post의 title, text값이 들어있어야 함 (수정이므로)
         pass
-    pass
 
 
 def post_publish(request, pk):
-    # pk에 해ㅏ당하는 Post의 published_date를 업데이트
-    # 요청시점의 시간을 해당
+    # pk에 해당하는 Post의 published_date를 업데이트
+    # 요청시점의 시간을 해당 Post의 published_date에 기록할 수 있도록 한다
+    # 완료후에는 post-detail로 이동
+    #  결과를 볼 수 있도록, 리스트 및 디테일 화면에서 published_date도 출력하도록 한다
     pass
 
 
 def post_unpublish(request, pk):
+    # pk에 해당하는 Post의 published_date에 None을 대입 후 save()
+    # 완료후에는 post-detail로 이동
+    #  결과를 볼 수 있도록, 리스트 및 디테일 화면에서 published_date도 출력하도록 한다
     pass
