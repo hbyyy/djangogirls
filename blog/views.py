@@ -100,18 +100,17 @@ def post_delete(request, pk):
     return redirect('url-name-post-list')
 
 
-
 def post_edit(request, pk):
-    # pk에 해당하는 Post를 수정한다
     if request.method == 'POST':
-        # request.POST로 전달된 title, text내용을 사용해서
-        #  pk에 해당하는 Post의 해당 필드를 수정하고 save()
-        #  이후 해당 Post의 post-detail화면으로 이동
-        pass
+        edit_item = Post.objects.get(pk=pk)
+        edit_item.title = request.POST['title']
+        edit_item.text = request.POST['text']
+        edit_item.save()
+        return redirect('url-name-post-list')
     else:
-        # 수정할 수 있는 form이 존재하는 화면을 보여줌
-        # 화면의 form에는 pk에 해당하는 Post의 title, text값이 들어있어야 함 (수정이므로)
-        pass
+        original_item = Post.objects.get(pk=pk)
+        context = dict(post=original_item)
+        return render(request, 'post_edit.html', context)
 
 
 def post_publish(request, pk):
