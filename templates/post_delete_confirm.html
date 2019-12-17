@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>정말 삭제하시겠습니까?</h1>
+<ul>
+    <li>제목 : {{ post.title }}</li>
+    <li>작성시간 : {{ post.created_date}}</li>
+</ul>
+
+<form action="{% url 'url-name-post-delete-confirm' pk=post.pk %}" class="d-inline-block" method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger btn-sm">삭제</button>
+</form>
+{#<form action="{% url 'url-name-post-detail' pk=post.pk %}delete/" class="d-inline-block" method="post">#}
+{#    {% csrf_token %}#}
+{#    <button class="btn btn-danger btn-sm">취소</button>#}
+{#</form>#}
+
+</body>
+</html>

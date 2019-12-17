@@ -4,14 +4,27 @@
     {% for post in posts %}
         <div class="card mb-3">
             <div class="card-body">
-                <h5 class="card-title" ><a href="{% url 'url-name-post-detail' pk=post.pk %}">{{ post.title }}</a></h5>
+                <h5 class="card-title"><a href="{% url 'url-name-post-detail' pk=post.pk %}">{{ post.title }}</a></h5>
                 <!--
                          linebreaksbr = 줄바꿈을 <br>태그로 변환
                          truncatechars = 뒤에 지정한 글자수만큼 표시 후 ...으로 줄임
                                    -->
                 <p class="card-text">{{ post.text| linebreaksbr| truncatechars:250 }}</p>
                 <div class="text-right">
+
+
                     <span>{{ post.created_date }}</span>
+
+                </div>
+                <div class="btn-container float-left">
+                    <a href="{% url 'url-name-post-delete-confirm' pk=post.pk %}">삭제</a>
+
+                    <a href="{% url 'url-name-post-edit' pk=post.pk %}">수정</a>
+                </div>
+                <div class="text-right">
+                    <span><a href="">PUBLISH</a></span>
+                    <span><a href="">UNPUBLISH</a></span>
+                    <span>Publish Date : {{ post.published_date }}</span>
                 </div>
             </div>
         </div>

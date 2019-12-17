@@ -92,12 +92,22 @@ def post_add(request):
         return render(request, 'post_add.html')
 
 
+def post_delete_confirm(request, pk):
+    if request.method == 'POST':
+        post_delete(request, pk)
+        return redirect('url-name-post-list')
+
+    else:
+        post = Post.objects.get(pk=pk)
+        context = dict(post=post)
+        return render(request, 'post_delete_confirm.html', context)
+
+
 def post_delete(request, pk):
     # pk에 해당하는 Post를 삭제한다
     # 삭제 후에는 post_list페이지로 이동
     delete_item = Post.objects.get(pk=pk)
     delete_item.delete()
-    return redirect('url-name-post-list')
 
 
 def post_edit(request, pk):
@@ -118,6 +128,8 @@ def post_publish(request, pk):
     # 요청시점의 시간을 해당 Post의 published_date에 기록할 수 있도록 한다
     # 완료후에는 post-detail로 이동
     #  결과를 볼 수 있도록, 리스트 및 디테일 화면에서 published_date도 출력하도록 한다
+    item = Post.objects.get(pk=pk)
+    item.publish()
     pass
 
 
