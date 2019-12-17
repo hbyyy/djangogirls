@@ -18,6 +18,7 @@
     {% csrf_token %}
     <button class="btn btn-danger btn-sm">삭제</button>
 </form>
+<a href="{% url 'url-name-post-list' %}">취소</a>
 {#<form action="{% url 'url-name-post-detail' pk=post.pk %}delete/" class="d-inline-block" method="post">#}
 {#    {% csrf_token %}#}
 {#    <button class="btn btn-danger btn-sm">취소</button>#}
