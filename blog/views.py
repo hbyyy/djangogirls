@@ -130,11 +130,14 @@ def post_publish(request, pk):
     #  결과를 볼 수 있도록, 리스트 및 디테일 화면에서 published_date도 출력하도록 한다
     item = Post.objects.get(pk=pk)
     item.publish()
-    pass
+    return redirect('url-name-post-detail', pk=pk)
 
 
 def post_unpublish(request, pk):
     # pk에 해당하는 Post의 published_date에 None을 대입 후 save()
     # 완료후에는 post-detail로 이동
     #  결과를 볼 수 있도록, 리스트 및 디테일 화면에서 published_date도 출력하도록 한다
-    pass
+    item = Post.objects.get(pk=pk)
+    item.published_date = None
+    item.save()
+    return redirect('url-name-post-detail', pk=pk)

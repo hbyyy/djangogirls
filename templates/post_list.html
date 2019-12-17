@@ -18,13 +18,17 @@
                 </div>
                 <div class="btn-container float-left">
                     <a href="{% url 'url-name-post-delete-confirm' pk=post.pk %}">삭제</a>
-
                     <a href="{% url 'url-name-post-edit' pk=post.pk %}">수정</a>
                 </div>
                 <div class="text-right">
-                    <span><a href="">PUBLISH</a></span>
-                    <span><a href="">UNPUBLISH</a></span>
-                    <span>Publish Date : {{ post.published_date }}</span>
+                    {% if post.published_date %}
+                        <a href="{% url 'url-name-post-unpublish' pk=post.pk %}">UNPUBLISH</a>
+                        <span>Publish Date : {{ post.published_date }}</span>
+
+                    {% else %}
+                        <a href="{% url 'url-name-post-publish' pk=post.pk %}">PUBLISH</a>
+
+                    {% endif %}
                 </div>
             </div>
         </div>
